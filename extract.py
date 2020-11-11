@@ -30,6 +30,7 @@ for subdir, dirs, files in os.walk(data_path):
                 # Add JSON-LD context
                 device_info["@context"] = {"@vocab": "https://wiki.lineageos.org/devices/schema#"}
                 device_info["@id"] = "https://wiki.lineageos.org/devices/" + file[:-4]
+                device_info["@type"] = "https://wiki.lineageos.org/devices/schema#Mobile"
                 # replace spaces in keys
                 device_info = urlencode_keys(device_info)
                 try:
