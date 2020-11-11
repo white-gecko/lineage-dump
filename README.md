@@ -9,6 +9,8 @@ To run this script you need to clone the lineage wiki into a separate directory 
       - …
     - …
 
+Run the following to start
+
     cd ..
     git clone https://github.com/LineageOS/lineage_wiki
     cd -
