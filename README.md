@@ -1,22 +1,6 @@
-## Extraction Process
+# RDF Export of the LineageOS Wiki and Stats
 
-To run this script you need to clone the lineage wiki into a separate directory so that you have the following rectory setup:
-
-- lineage-rdf
-  - data <this directory>
-  - lineage_wiki
-    - _data
-      - devices
-      - …
-    - …
-
-Run the following to start
-
-    cd ..
-    git clone https://github.com/LineageOS/lineage_wiki
-    cd -
-    mkvirtualenv -p /usr/bin/python3 -r requirements.txt lineage-dump
-    python3 extract.py
+This dataset combines the device information from the [LineageOS Wiki](https://wiki.lineageos.org/devices/) with the current [usage statistics](https://stats.lineageos.org/).
 
 ## Usage
 
@@ -49,4 +33,24 @@ SELECT * WHERE {
 ORDER BY DESC(?release) DESC(?stats) 
 LIMIT 100
 ```
+
+## Extraction Process
+
+To run this script you need to clone the lineage wiki into a separate directory so that you have the following rectory setup:
+
+- lineage-rdf
+  - data <this directory>
+  - lineage_wiki
+    - _data
+      - devices
+      - …
+    - …
+
+Run the following to start
+
+    cd ..
+    git clone https://github.com/LineageOS/lineage_wiki
+    cd -
+    mkvirtualenv -p /usr/bin/python3 -r requirements.txt lineage-dump
+    python3 extract.py
 
