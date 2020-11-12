@@ -1,3 +1,4 @@
+## Extraction Process
 
 To run this script you need to clone the lineage wiki into a separate directory so that you have the following rectory setup:
 
@@ -16,3 +17,36 @@ Run the following to start
     cd -
     mkvirtualenv -p /usr/bin/python3 -r requirements.txt lineage-dump
     python3 extract.py
+
+## Usage
+
+To use the data you need to import it into a Triple Store.
+For instance you can use the [Quit Store](https://github.com/AKSW/QuitStore).
+Download a [binary](https://github.com/AKSW/QuitStore/releases) change to this directory and execute:
+
+    quit -t .
+
+Now you should find a query endpoint at `http://localhost:5000/sparql`.
+
+## Queries
+
+Now you can execute queries like:
+
+
+**Most recent popular devices**
+
+```sparql
+PREFIX lins: <https://wiki.lineageos.org/devices/schema#>
+
+SELECT * WHERE {
+ GRAPH <https://wiki.lineageos.org/devices/> {
+  ?sub a lins:Mobile ;
+       lins:release ?release ;
+       lins:usage_stat ?stats .
+    filter (?stats > 5000)
+ }
+}
+ORDER BY DESC(?release) DESC(?stats) 
+LIMIT 100
+```
+
