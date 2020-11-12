@@ -25,6 +25,7 @@ def urlencode_keys(dictionary):
 g = Graph()
 
 def get_devices():
+    print("get devices")
     for subdir, dirs, files in os.walk(data_path):
         for file in files:
             if file.endswith(".yml"):
@@ -51,7 +52,7 @@ def get_stats():
     Get stats for the devices.
     The endpoint implementation is here: https://github.com/lineageos-infra/tribble-tracker/blob/master/app.py
     """
-    print("getstats")
+    print("get stats")
     with urllib.request.urlopen(stats_url) as stats_in:
         stats_json = json.load(stats_in)
         for model, value in stats_json["model"].items():
