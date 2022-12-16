@@ -65,4 +65,4 @@ get_devices()
 get_stats()
 
 with open(rdf_dump, 'w') as rdf_out:
-    rdf_out.write("\n".join(sorted(set(g.serialize(format="ntriples").decode("utf-8").strip().split("\n")))))
+    rdf_out.write("\n".join(sorted(set(g.serialize(format="ntriples").strip().split("\n")))))
