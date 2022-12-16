@@ -58,7 +58,7 @@ def get_stats():
         for model, value in stats_json["model"].items():
             if value < 2:
                 continue
-            model = model.replace(' ', '%20')
+            model = model.replace(' ', '%20').replace('|', '_')
             g.add((URIRef("https://wiki.lineageos.org/devices/" + model), URIRef("https://wiki.lineageos.org/devices/schema#usage_stat"), Literal(value)))
 
 get_devices()
