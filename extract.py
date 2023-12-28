@@ -3,7 +3,7 @@
 import os
 import yaml
 import json
-from rdflib import Graph, plugin, URIRef, Literal
+from rdflib import Graph, URIRef, Literal
 import urllib.request
 
 data_path = "../lineage_wiki/_data/devices/"
