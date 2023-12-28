@@ -1,0 +1,31 @@
+version: '3'
+
+tasks:
+  update:repo:
+    desc: Update the Wiki repo
+    vars:
+      WIKI_REPO: ../lineage_wiki/
+    cmds:
+      - |
+        cd {{.WIKI_REPO}}
+        git pull
+
+  extract:
+    desc: Extract RDF from the Wiki
+    env:
+      LC_ALL: C
+    cmds:
+      - python3 extract.py
+
+  update:
+    desc: Update the Repository
+    deps:
+      - task: update:repo
+    vars:
+      MESSAGE: Update LineageOS Device Data
+      EXPORT: lineage.nt
+    cmds:
+      - task: extract
+      - |
+        git add {{.EXPORT}}
+        git commit -m "{{.MESSAGE}}"
