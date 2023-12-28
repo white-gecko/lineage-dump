@@ -1,14 +1,15 @@
 version: '3'
 
+vars:
+  WIKI_REPO: ../lineage_wiki/
+  WIKI_REPO_REMOTE: https://github.com/LineageOS/lineage_wiki
+
 tasks:
-  update:repo:
-    desc: Update the Wiki repo
-    vars:
-      WIKI_REPO: ../lineage_wiki/
+
+  install:
+    desc: Install the python dependencies
     cmds:
-      - |
-        cd {{.WIKI_REPO}}
-        git pull
+      - poetry install
 
   extract:
     desc: Extract RDF from the Wiki
@@ -20,7 +21,7 @@ tasks:
   update:
     desc: Update the Repository
     deps:
-      - task: update:repo
+      - task: repo:update
     vars:
       MESSAGE: Update LineageOS Device Data
       EXPORT: lineage.nt
@@ -41,3 +42,17 @@ tasks:
     docs: The model can be queries with SPARQL at http://localhost:5000/sparql
     cmds:
       - quit -t .
+
+  repo:init:
+    desc: Initialize the wiki repository
+    cmds:
+      - |
+        cd $(dirname "{{.WIKI_REPO}}")
+        git clone {{.WIKI_REPO_REMOTE}}
+
+  repo:update:
+    desc: Update the Wiki repo
+    cmds:
+      - |
+        cd {{.WIKI_REPO}}
+        git pull

@@ -8,7 +8,9 @@ To use the data you need to import it into a Triple Store.
 For instance you can use the [Quit Store](https://github.com/AKSW/QuitStore).
 Download a [binary](https://github.com/AKSW/QuitStore/releases) change to this directory and execute:
 
-    quit -t .
+```
+quit -t .
+```
 
 Now you should find a query endpoint at `http://localhost:5000/sparql`.
 
@@ -37,7 +39,7 @@ LIMIT 100
 
 ## Extraction Process
 
-To run this script you need to clone the lineage wiki into a separate directory so that you have the following rectory setup:
+To run this script you need to clone the lineage wiki into a separate directory so that you have the following directory setup:
 
 - lineage-rdf
   - data <this directory>
@@ -47,10 +49,18 @@ To run this script you need to clone the lineage wiki into a separate directory 
       - …
     - …
 
+The easiest is to execute the commands with `task` (https://taskfile.dev/).
+
 Run the following to start
 
-    cd ..
-    git clone https://github.com/LineageOS/lineage_wiki
-    cd -
-    mkvirtualenv -p /usr/bin/python3 -r requirements.txt lineage-dump
-    python3 extract.py
+```
+task repo:init
+task install
+task extract
+```
+
+To re-run the extraction to:
+
+```
+$ task repo:update
+$ task extract
