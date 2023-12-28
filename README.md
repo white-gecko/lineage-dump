@@ -26,11 +26,12 @@ SELECT * WHERE {
  GRAPH <https://wiki.lineageos.org/devices/> {
   ?sub a lins:Mobile ;
        lins:release ?release ;
-       lins:usage_stat ?stats .
+       lins:usage_stat ?stats ;
+       lins:current_branch ?current_branch .
     filter (?stats > 5000)
  }
 }
-ORDER BY DESC(?release) DESC(?stats) 
+ORDER BY DESC(?current_branch) DESC(?release) DESC(?stats)
 LIMIT 100
 ```
 
@@ -53,4 +54,3 @@ Run the following to start
     cd -
     mkvirtualenv -p /usr/bin/python3 -r requirements.txt lineage-dump
     python3 extract.py
-
