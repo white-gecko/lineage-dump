@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "lineage-dump"
+version = "0.1.0"
+description = ""
+authors = ["Natanael Arndt <arndtn@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyyaml = "^6.0.1"
+rdflib-jsonld = "^0.6.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
