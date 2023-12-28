@@ -29,3 +29,15 @@ tasks:
       - |
         git add {{.EXPORT}}
         git commit -m "{{.MESSAGE}}"
+
+  serve:fuseki:
+    desc: Serve the model with a fuseki triple store
+    docs: The model can be queries with SPARQL at http://localhost:3030/lineage/
+    cmds:
+      - docker run --rm -p 3030:3030 --name lineage_model -v .:/graph -d stain/jena-fuseki /jena-fuseki/fuseki-server --file=/graph/lineage.nt /lineage
+
+  serve:quit:
+    desc: Serve the model with a quit triple store
+    docs: The model can be queries with SPARQL at http://localhost:5000/sparql
+    cmds:
+      - quit -t .
